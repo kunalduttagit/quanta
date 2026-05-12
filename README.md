@@ -77,8 +77,8 @@ This starts:
 - `nginx` → Reverse proxy on port 80
 
 **Domains:**
-- `ticket.kunaldutta.com` → Frontend
-- `api.ticket.kunaldutta.com` → Backend API
+- `quanta.kunaldutta.com` → Frontend
+- `api.quanta.kunaldutta.com` → Backend API
 
 ---
 

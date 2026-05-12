@@ -26,6 +26,8 @@ class Settings(BaseSettings):
     cors_origins: list[str] = [
         "http://localhost:3000",
         "https://ticket.kunaldutta.com",
+        "https://quanta.kunaldutta.com",
+        "http://quanta.kunaldutta.com",
     ]
 
     model_config = SettingsConfigDict(
