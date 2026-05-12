@@ -1,0 +1,57 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+*.egg
+
+# ── Environment & secrets ──────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.env
+
+# ── Node / Next.js ─────────────────────────────────────────────────────────────
+node_modules/
+.next/
+out/
+.cache/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── macOS ──────────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# ── Editor / IDE ──────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.sublime-workspace
+*.suo
+*.user
+
+# ── Project-internal docs & samples (not for public repo) ─────────────────────
+AGENTS.md
+project-requirements.md
+graph_design.png
+sample-desktop.png
+sample-desktop-2.png
+apple-health.png
+image.png
+apple-color-pallete.md
+dummydata.txt
+generate_data.py
+backend/dummy_injector.py
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+*.log
