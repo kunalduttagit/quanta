@@ -111,6 +111,30 @@ class TicketRepository:
             sort_by = "created_at"
 
         total = await self._col.count_documents(query)
+
+        # ── Logical sorting for Priority and Status ────────────────────────────
+        # These fields require mapping strings to numeric ranks for intuitive sorting
+        if sort_by in {"priority", "status"}:
+            rank_map = {
+                "priority": [PriorityEnum.LOW.value, PriorityEnum.MEDIUM.value, PriorityEnum.HIGH.value, PriorityEnum.CRITICAL.value],
+                "status": [StatusEnum.OPEN.value, StatusEnum.IN_PROGRESS.value, StatusEnum.CLOSED.value]
+            }
+            order_array = rank_map[sort_by]
+
+            pipeline = [
+                {"$match": query},
+                {"$addFields": {
+                    "sort_rank": {"$indexOfArray": [order_array, f"${sort_by}"]}
+                }},
+                {"$sort": {"sort_rank": sort_order, "created_at": DESCENDING}},
+                {"$skip": skip},
+                {"$limit": limit}
+            ]
+            cursor = self._col.aggregate(pipeline)
+            docs = [TicketDocument.from_db(d) async for d in cursor]
+            return docs, total
+
+        # ── Standard sorting for other fields ──────────────────────────────────
         cursor = (
             self._col.find(query)
             .sort(sort_by, sort_order)
